@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title></title>
+	<link href="http://cdn.alloyui.com/3.0.0/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+</head>
+<style type="text/css">
+	iframe {
+		width: 100%;
+	}
+</style>
+<body class="yui3-skin-sam">
+	<h1>AlloyUI - Modal Iframe Resize</h1>
+
+	<script type="text/javascript">
+		YUI({ filter: 'raw' }).use('aui-modal', 'plugin', 'aui-dialog-iframe-deprecated',
+			function(Y) {
+				new Y.Modal(
+					{
+						centered: true,
+						resizable: true
+					}
+				).plug(
+					Y.Plugin.DialogIframe, {
+						bindLoadHandler: function() {
+							Y.on('load', Y.bind(this.fire, this, 'load'));
+						},
+						uri: 'assets/iframe.html',
+						iframeCssClass: 'dialog-iframe'
+					}
+				).render();
+			}
+		);
+	</script>
+</body>

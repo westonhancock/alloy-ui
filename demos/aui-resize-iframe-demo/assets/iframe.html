@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title></title>
+	<link href="http://cdn.alloyui.com/3.0.0/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
+	<script src="http://cdn.alloyui.com/3.0.0/aui/aui-min.js"></script>
+</head>
+<body>
+	<div class="row-fluid">
+		<p>
+			<button class="btn btn-lg btn-primary" id="toggler">Toggle</button>
+		</p>
+	</div>
+
+	<div id="toggle">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, id, voluptas, alias tempora eveniet doloremque repellat excepturi quibusdam nam eum doloribus distinctio. Reiciendis, voluptatem fugit cumque esse maxime incidunt perspiciatis.
+	</div>
+
+	<div class="row-fluid">
+		<p>
+			<button class="btn btn-lg btn-primary" id="modalChild">Open Modal</button>
+		</p>
+	</div>
+
+	<script type="text/javascript">
+		YUI({ filter: 'raw' }).use('aui-modal', 'aui-toggler', 'node',
+			function(Y) {
+				new Y.Toggler({
+					animated: true,
+					content: '#toggle',
+					header: '#toggler',
+					expanded: false,
+					transition: {
+						duration: 0.6,
+						on: {
+							end: function() {
+							}
+						}
+					}
+				});
+
+				Y.one('#modalChild').on('click',
+					function() {
+						new Y.Modal(
+							{
+								bodyContent: 'Hello, World!',
+								centered: true,
+								dragable: true,
+								height: 500,
+								modal: true,
+								render: '#modalParent',
+								resizable: true,
+								visible: true,
+								width: 500,
+								zIndex: 500
+							}
+						).render();
+					}
+				);
+			}
+		);
+	</script>
+</body>
